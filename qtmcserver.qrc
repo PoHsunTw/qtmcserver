@@ -15,5 +15,6 @@
         <file>images/save.png</file>
         <file>images/led-green.png</file>
         <file>images/led-red.png</file>
+        <file>images/led-orange.png</file>
     </qresource>
 </RCC>

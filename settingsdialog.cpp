@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Qt Minecraft Server
  * Copyleft 2013
  *
@@ -116,7 +116,7 @@ void SettingsDialog::on_mcServerBrowseButton_clicked()
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Select Minecraft Server"),
                                                     openDirectory,
-                                                    tr("Jar Files (*.jar)"));
+                                                    tr("Jar Files (*.jar) ;; Bat Files (*.bat)"));
     if(!fileName.isEmpty())
     {
         ui->mcServerFileLineEdit->setText(QDir::toNativeSeparators(fileName));

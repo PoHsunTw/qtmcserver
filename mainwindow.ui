@@ -17,7 +17,13 @@
    <iconset resource="qtmcserver.qrc">
     <normaloff>:/images/qtmcserver-256x256.png</normaloff>:/images/qtmcserver-256x256.png</iconset>
   </property>
+  <property name="toolTipDuration">
+   <number>-6</number>
+  </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="toolTipDuration">
+    <number>-18</number>
+   </property>
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QTabWidget" name="mainTabWidget">
@@ -33,8 +39,8 @@
          <widget class="QTextEdit" name="serverLogTextEdit">
           <property name="font">
            <font>
-            <family>Lucida Console</family>
-            <pointsize>9</pointsize>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
            </font>
           </property>
           <property name="readOnly">
@@ -42,17 +48,17 @@
           </property>
          </widget>
         </item>
-        <item row="1" column="1">
-         <widget class="QPushButton" name="sendCommandButton">
-          <property name="text">
-           <string>&amp;Send</string>
-          </property>
-         </widget>
-        </item>
         <item row="1" column="0">
          <widget class="QLineEdit" name="serverCommandLineEdit">
           <property name="placeholderText">
            <string>Command</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="sendCommandButton">
+          <property name="text">
+           <string>&amp;Send</string>
           </property>
          </widget>
         </item>
@@ -67,9 +73,119 @@
          <widget class="QTextEdit" name="serverPropertiesTextEdit">
           <property name="font">
            <font>
-            <family>Lucida Console</family>
-            <pointsize>9</pointsize>
+            <family>Times New Roman</family>
+            <pointsize>12</pointsize>
            </font>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tabRemoteControl">
+       <attribute name="title">
+        <string>Remote</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0" colspan="5">
+         <widget class="QGroupBox" name="remoteMainGroupBox">
+          <property name="title">
+           <string>Connect Log &amp;&amp; Button Function</string>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="1" column="0">
+            <widget class="QPushButton" name="RestartServerButton">
+             <property name="text">
+              <string>Restart Server</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="forceDisconnectButton">
+             <property name="text">
+              <string>Force Disconnect</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="exportLogButton">
+             <property name="text">
+              <string>Export Log</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QPushButton" name="cleanLogButton">
+             <property name="acceptDrops">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Clean Log</string>
+             </property>
+             <property name="checkable">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="4">
+            <widget class="QTextEdit" name="connectionLogText">
+             <property name="font">
+              <font>
+               <family>Times New Roman</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+             <property name="tabStopWidth">
+              <number>160</number>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLineEdit" name="keyLineEdit">
+          <property name="echoMode">
+           <enum>QLineEdit::Normal</enum>
+          </property>
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+          <property name="placeholderText">
+           <string>Click &quot;Generate Key&quot; to get a Key</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="connectKeyLabel">
+          <property name="text">
+           <string>ConnectKey：</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="refreshKeyButton">
+          <property name="text">
+           <string>Refresh Key</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="generateKeyButton">
+          <property name="text">
+           <string>Generate Key</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="4">
+         <widget class="QPushButton" name="CopyButton">
+          <property name="text">
+           <string>Copy</string>
           </property>
          </widget>
         </item>
@@ -149,6 +265,7 @@
    <addaction name="actionExport"/>
    <addaction name="separator"/>
    <addaction name="actionAbout"/>
+   <addaction name="actionExit"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionExit">
@@ -157,7 +274,7 @@
      <normaloff>:/images/exit.png</normaloff>:/images/exit.png</iconset>
    </property>
    <property name="text">
-    <string>E&amp;xit</string>
+    <string>&amp;Exit</string>
    </property>
    <property name="toolTip">
     <string>Exit Qt Minecraft Server</string>
@@ -262,7 +379,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>mainTabWidget</tabstop>
   <tabstop>serverLogTextEdit</tabstop>
   <tabstop>serverCommandLineEdit</tabstop>
   <tabstop>sendCommandButton</tabstop>

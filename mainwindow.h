@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 /*
@@ -27,6 +27,8 @@
 #include <QFileSystemWatcher>
 #include <QSettings>
 #include <QLabel>
+#include <QtNetwork>
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -78,6 +80,9 @@ public:
     void updateWatchedFileSystemPath(const QString& oldPath, const QString& newPath);
     void updateWatchedDirSystemPath(const QString& oldPath, const QString& newPath);
 
+    //===2018new===
+    QString getMinecraftLogsPath(const QString& mcServerPath);
+
 public slots:
     void onStart();
     void onFinish(int exitCode, QProcess::ExitStatus exitStatus);
@@ -93,6 +98,11 @@ private:
     void createActions();
     void createTrayIcon();
     void setIcon();
+    //===2018new===
+    void serverStart();
+    void keyAlgorithm();
+    void writeToFile(QString FileNameT, QString strT);
+    void prepareSend();
 
 private slots:
     void iconActivated(QSystemTrayIcon::ActivationReason reason);
@@ -108,13 +118,26 @@ private slots:
     void on_serverCommandLineEdit_textEdited(const QString &text);
     void on_actionSaveServerProperties_triggered();
     void on_actionRefreshServerProperties_triggered();
-
+    //===2018new===
+    void acceptConnection();
+    void readMessage();
+    void serverDisconnected();
+    void generateKey();
+    void refreshKey_slot();
+    void forceDisconnect();
+    void restartServer();
+    void cleanRemoteServerLog();
+    void ExportRemoteServerLog();
+    void timerTimeout();
+    void updateClientProgress(qint64 numBytes);
+    void setClipboardContent();
 private:
     Ui::MainWindow *ui;
 
     QLabel *statusLabel;
     QLabel *statusLedLabel;
-
+    QLabel *remoteStatusLabel;
+    QLabel *remoteStatusLedLabel;
     QAction *minimizeAction;
     QAction *maximizeAction;
     QAction *restoreAction;
@@ -137,6 +160,30 @@ private:
     int m_xms;
     int m_xmx;
     QString m_additionalParameters;
+    //===2018new===
+    QByteArray connectKeyBA;
+    QTcpServer Server;
+    QTcpSocket *ServerConnection;
+    quint16    ServerPort;
+    QString    ClientIPaddress;
+    quint16    ClientPort;
+    bool       firstConnect;
+    QTimer*    firstConnectTimer;
+
+    qint64       totalBytes;//record data totalBytes
+    qint64       bytesWritten;//record Written data Bytes now
+    qint64       bytesToWrite;//record havn't written data Bytes now
+    qint64       loadSize;//record every data's size
+    QFile        *LF;//localFile
+    QByteArray   outBlock;//data output staging
+
+    QString      MCServerLogs;
+    QString      MCServerLogsTemp;
+    qint64       MCServerLogsSize;
+    QString      sendFileMode;
+    QString      outBlockText;
+
+
 };
 
 #endif // MAINWINDOW_H

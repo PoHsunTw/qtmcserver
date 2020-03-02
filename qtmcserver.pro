@@ -92,3 +92,24 @@ OTHER_FILES += \
     images/refresh.png \
     images/led-red.png \
     images/led-green.png
+
+LIBS += C:\Users\hsun\AppData\Local\Programs\Python\Python35-32\libs\python35.lib
+
+DISTFILES += \
+    images/about.png \
+    images/Circle_Orange.png \
+    images/clear.png \
+    images/download.png \
+    images/exit.png \
+    images/exportlog.png \
+    images/led-green.png \
+    images/led-red.png \
+    images/qtmcserver-16x16.png \
+    images/qtmcserver-256x256.png \
+    images/refresh.png \
+    images/save.png \
+    images/settings.png \
+    images/start.png \
+    images/stop.png \
+    images/qtmcserver.ico \
+    images/led-orange.png
